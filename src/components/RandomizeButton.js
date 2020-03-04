@@ -9,6 +9,7 @@ import {
   Button,
   Alert,
   StyleSheet,
+  TouchableHighlight,
 } from 'react-native';
 
 const primaryColor = '#d32f2f',
@@ -18,26 +19,41 @@ const primaryColor = '#d32f2f',
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    backgroundColor: '#2E9298',
+    backgroundColor: primaryColor,
     borderRadius: 10,
     padding: 10,
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowRadius: 10,
-    shadowOpacity: 0.25,
+    marginLeft: '12.5%',
+    marginTop: 20,
+    alignItems: 'center',
+    width: '75%',
+  },
+
+  buttonText: {
+    color: primaryTextColor,
+    fontSize: 25,
   },
 });
 
-export default function RandomizeButton() {
-  return (
-    <View style={styles.buttonContainer}>
-      <Button
-        title="What am I going to eat?"
-        onPress={() => Alert.alert('Simple Button pressed')}
-      />
-    </View>
-  );
+export default class RandomizeButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  onPress = () => {
+    this.setState({});
+  };
+
+  render() {
+    return (
+      <TouchableHighlight
+        style={styles.buttonContainer}
+        onPress={this.onPress}
+        underlayColor={primaryDarkColor}>
+        <View>
+          <Text style={styles.buttonText}>What am I hungry for?</Text>
+        </View>
+      </TouchableHighlight>
+    );
+  }
 }
