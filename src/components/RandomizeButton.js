@@ -2,6 +2,8 @@ import React from 'react';
 
 import {View, Text, StyleSheet, TouchableHighlight} from 'react-native';
 
+import MealsJSON from '../assets/MealsJSON';
+
 const primaryColor = '#d32f2f',
   primaryLightColor = '#ff6659',
   primaryDarkColor = '#9a0007',
@@ -9,8 +11,7 @@ const primaryColor = '#d32f2f',
 
 const styles = StyleSheet.create({
   container: {
-    //marginTop: 50,
-    paddingTop: '75%',
+    paddingTop: '95%',
   },
 
   buttonContainer: {
@@ -32,10 +33,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  text: {
-    padding: 20,
+  textName: {
     fontSize: 30,
     fontWeight: 'bold',
+  },
+
+  textPrice: {
+    padding: 5,
+    fontSize: 30,
+  },
+
+  textLastEaten: {
+    padding: 5,
+    fontSize: 20,
+    fontStyle: 'italic',
   },
 });
 
@@ -44,80 +55,27 @@ export default class RandomizeButton extends React.Component {
     super(props);
     this.state = {
       meal: 'No Meal Selected Yet',
+      price: 'No Price Yet',
+      lastEaten: 'Never eaten before',
     };
   }
 
   onPress = () => {
-    const mealNumber = Math.floor(Math.random() * 19);
-    switch (mealNumber) {
-      case 0:
-        this.setState({meal: 'Eat at home!'});
-        break;
-      case 1:
-        this.setState({meal: "McDonald's"});
-        break;
-      case 2:
-        this.setState({meal: 'Iron Chef'});
-        break;
-      case 3:
-        this.setState({meal: 'Noodles & Company'});
-        break;
-      case 4:
-        this.setState({meal: 'Cracker Barrel'});
-        break;
-      case 5:
-        this.setState({meal: 'Olive Garden'});
-        break;
-      case 6:
-        this.setState({meal: 'Chipotle'});
-        break;
-      case 7:
-        this.setState({meal: 'OPH / Waffle House'});
-        break;
-      case 8:
-        this.setState({meal: 'Pizza'});
-        break;
-      case 9:
-        this.setState({meal: "Kirby's"});
-        break;
-      case 10:
-        this.setState({meal: "Paxton's Grill"});
-        break;
-      case 11:
-        this.setState({meal: "Ramsey's Trailside"});
-        break;
-      case 12:
-        this.setState({meal: 'Red Robin'});
-        break;
-      case 13:
-        this.setState({meal: 'Skyline Chili'});
-        break;
-      case 14:
-        this.setState({meal: 'Red Lobster'});
-        break;
-      case 15:
-        this.setState({meal: 'Outback Steakhouse'});
-        break;
-      case 16:
-        this.setState({meal: 'Smashburger'});
-        break;
-      case 17:
-        this.setState({meal: 'Chic-Fil-A'});
-        break;
-      case 18:
-        this.setState({meal: 'Taco Bell'});
-        break;
-      case 19:
-        this.setState({meal: 'Panera Bread'});
-        break;
-    }
+    const mealID = 'meal' + Math.floor(Math.random() * 19);
+    this.setState({
+      meal: MealsJSON[mealID].name,
+      price: MealsJSON[mealID].price,
+      lastEaten: MealsJSON[mealID].lastEaten,
+    });
   };
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.textContainer}>
-          <Text style={styles.text}>{this.state.meal}</Text>
+          <Text style={styles.textName}>{this.state.meal}</Text>
+          <Text style={styles.textPrice}>{this.state.price}</Text>
+          <Text style={styles.textLastEaten}>{this.state.lastEaten}</Text>
         </View>
 
         <TouchableHighlight
