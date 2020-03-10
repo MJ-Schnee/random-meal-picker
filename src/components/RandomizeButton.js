@@ -2,8 +2,7 @@ import React from 'react';
 
 import {View, Text, StyleSheet, TouchableHighlight} from 'react-native';
 
-import MealsJSON from '../assets/MealsJSON';
-
+const MealsJSON = require('../assets/Meals.json');
 const primaryColor = '#d32f2f',
   primaryLightColor = '#ff6659',
   primaryDarkColor = '#9a0007',
